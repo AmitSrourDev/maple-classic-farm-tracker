@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+build/
+dist/
+*.spec.bak
+maple_exp_debug/
+maple_hud_settings.json
+grind_log.csv
+maple_exp_*.csv
+*.summary.json
+meowdb_cookie.txt
+meowdb-export.json
+build.json
+tests/out/

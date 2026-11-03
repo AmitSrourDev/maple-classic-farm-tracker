@@ -1,0 +1,27 @@
+name: ci
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt pyflakes
+      - name: Lint
+        run: python -m pyflakes maple_hud.py maple_exp.py maple_slots.py maple_build.py meowdb.py updater.py app_paths.py
+      - name: Unit tests (parser, session, farm rate, map snapping)
+        run: python tests/test_session.py
+      - name: Synthetic OCR test (status bars at 6 fonts, level-up)
+        run: python tests/test_synth.py 12
+      - name: Self test
+        run: python maple_hud.py --selftest

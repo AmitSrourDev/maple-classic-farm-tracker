@@ -1,0 +1,32 @@
+{
+  "note": "stats WITH gear. From meowdb build RasAQRU5Md (2026-11-03): AP 4/28/4/134 + gear STR+2 DEX+2 LUK+4, Meba 19 + Wolbi 17.",
+  "level": 30,
+  "str": 6,
+  "dex": 30,
+  "luk": 138,
+  "watk": 36,
+  "l7_level": 20,
+  "acc_gear": 1,
+  "acc_potion": 0,
+  "crit_rate": 0.060000000000000005,
+  "crit_dmg": 0.21,
+  "mp_pot": "Lemon",
+  "_ap": {
+    "str": 4,
+    "dex": 28,
+    "int": 4,
+    "luk": 134
+  },
+  "gear_names": [
+    "2747",
+    "969",
+    "1185",
+    "Work Gloves",
+    "1368",
+    "Meba",
+    "Wolbi",
+    "Old Raggedy Cape",
+    "902"
+  ],
+  "build_name": "Level 30 Thief - Claw"
+}

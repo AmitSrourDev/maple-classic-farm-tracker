@@ -1,0 +1,447 @@
+# MapleStory Classic World maps: street | map name (meowdb.com/msclassic/maps/all, fetched 2026-11-03)
+Maple Road | A Split Road
+Maple Road | East Entrance to Mushroom Town
+Maple Road | Mushroom Town
+Maple Road | Mushroom Town - West Entrance
+Maple Road | Mushroom Town Townstreet
+Maple Road | Snail Hunting Ground I
+Maple Road | Snail Hunting Ground II
+Maple Road | Snail Hunting Ground III
+Maple Road | Southperry
+Maple Road | Southperry Armor Store
+Rainbow Street | Amherst
+Rainbow Street | Amherst Department Store
+Rainbow Street | Amherst Townstreet
+Rainbow Street | Amherst Weapon Store
+Rainbow Street | Dangerous Forest
+Rainbow Street | Hunting Ground Middle of the Forest I
+Rainbow Street | Hunting Ground Middle of the Forest II
+Rainbow Street | In a Small Forest
+Rainbow Street | Mushroom Garden
+Rainbow Street | Snail Field of Flowers
+Rainbow Street | Snail Garden
+Rainbow Street | The Field East of Amherst
+Rainbow Street | The Field West of Amherst
+Rainbow Street | Tomato Field
+Deep Passage | Another Sanctuary
+Deep Passage | Bygone Days
+Deep Passage | Decayed Tunnel I
+Deep Passage | Decayed Tunnel II
+Deep Passage | Decayed Tunnel III
+Deep Passage | Dilapidated Tomb
+Deep Passage | Lingering Regret
+Deep Passage | Perilous Descent I
+Deep Passage | Perilous Descent II
+Deep Passage | Perilous Descent III
+Deep Passage | Precipice of Darkness
+Dungeon | Another Entrance
+Dungeon | Another Path
+Dungeon | Ant Tunnel I
+Dungeon | Ant Tunnel II
+Dungeon | Ant Tunnel III
+Dungeon | Ant Tunnel IV
+Dungeon | Ant Tunnel Park
+Dungeon | Damp Forest
+Dungeon | Damp Tree-Forest
+Dungeon | Dangerous Steam
+Dungeon | Dark Cave
+Dungeon | Deep Ant Tunnel I
+Dungeon | Deep Ant Tunnel II
+Dungeon | Deep Forest
+Dungeon | Drake Hunting Ground
+Dungeon | Drake's Meal Table
+Dungeon | Hunting Ground in the Deep Forest I
+Dungeon | Hunting Ground in the Deep Forest II
+Dungeon | Regular Sauna
+Dungeon | Sanctuary Entrance I
+Dungeon | Sanctuary Entrance II
+Dungeon | Sanctuary Entrance III
+Dungeon | Sanctuary Entrance IV
+Dungeon | Sleepy Dungeon I
+Dungeon | Sleepy Dungeon II
+Dungeon | Sleepy Dungeon III
+Dungeon | Sleepy Dungeon IV
+Dungeon | Sleepy Dungeon V
+Dungeon | Sleepywood
+Dungeon | Sleepywood Hotel
+Dungeon | Swampy Land in a Deep Forest
+Dungeon | The Cave of Evil Eye I
+Dungeon | The Cave of Evil Eye II
+Dungeon | The Cave of Evil Eye III
+Dungeon | The Cave of Evil Eye IV
+Dungeon | The Cursed Sanctuary
+Dungeon | The Grave of Mushmom
+Dungeon | The Tunnel That Lost Light I
+Dungeon | The Tunnel That Lost Light II
+Dungeon | VIP Sauna
+Dungeon | Wild Kargo's Area
+Florina Road | A Look-Out Shed Around the Beach
+Florina Road | Clang and Lorang
+Florina Road | Florina Beach
+Florina Road | Hot Sand
+Florina Road | Lorang and Clang
+Florina Road | Lorang Lorang
+Hidden Street | An Empty House
+Hidden Street | Beach Hunting Ground
+Hidden Street | Cabin of the Forsaken
+Hidden Street | Caution Falling Down
+Hidden Street | Collision of Ice and Fire
+Hidden Street | Dangerous Valley
+Hidden Street | Dangerous Valley II
+Hidden Street | Downstairs at the Forest
+Hidden Street | Land of Wild Boar
+Hidden Street | Lorang Lorang Lorang
+Hidden Street | Marr's Forest
+Hidden Street | Monkey Forest I
+Hidden Street | Monkey Swamp I
+Hidden Street | Monkey Swamp II
+Hidden Street | Monkey Swamp III
+Hidden Street | Mushroom Garden
+Hidden Street | Northern Top of Construction Site
+Hidden Street | Over the Wall
+Hidden Street | Pig Park
+Hidden Street | Pig Park II
+Hidden Street | Someone Else's Grave
+Hidden Street | Someone Else's House
+Hidden Street | The Blue Mushroom Forest
+Hidden Street | The Breathing Rock
+Hidden Street | The Circulation Desk
+Hidden Street | The Deep Forest of Patience <Step 1>
+Hidden Street | The Deep Forest of Patience <Step 2>
+Hidden Street | The Deep Forest of Patience <Step 3>
+Hidden Street | The Deep Forest of Patience <Step 4>
+Hidden Street | The Deep Forest of Patience <Step 5>
+Hidden Street | The Deep Forest of Patience <Step 6>
+Hidden Street | The Deep Forest of Patience <Step 7>
+Hidden Street | The Forest of Evil I
+Hidden Street | The Forest of Evil II
+Hidden Street | The Forest of Patience <Step 1>
+Hidden Street | The Forest of Patience <Step 2>
+Hidden Street | The Forest of Patience <Step 3>
+Hidden Street | The Forest of Patience <Step 4>
+Hidden Street | The Forest of Patience <Step 5>
+Hidden Street | The Hermit's Cabin
+Hidden Street | The Land of Wild Boar II
+Hidden Street | The Murky Swamp I
+Hidden Street | The Murky Swamp II
+Hidden Street | The Pig Beach
+Hidden Street | The Resting Spot, Pig Park
+Hidden Street | The Valley of Death
+Hidden Street | Tree Dungeon, Monkey Forest II
+Hidden Street | Utah's Pig Farm
+Kerning City Subway | Line 1 <Area 1>
+Kerning City Subway | Line 1 <Area 2>
+Kerning City Subway | Line 1 <Area 3>
+Kerning City Subway | Line 1 <Area 4>
+Kerning City Subway | Line 2 <Area 1>
+Kerning City Subway | Line 2 <Area 2>
+Kerning City Subway | Line 2 <Area 3>
+Kerning City Subway | Transfer Area
+Line 3 Construction Site | B1 <Area 1>
+Line 3 Construction Site | B1 <Area 2>
+Line 3 Construction Site | B1 <Subway Depot>
+Line 3 Construction Site | B2 <Area 1>
+Line 3 Construction Site | B2 <Area 2>
+Line 3 Construction Site | B2 <Subway Depot>
+Line 3 Construction Site | B3 <Area 1>
+Line 3 Construction Site | B3 <Area 2>
+Line 3 Construction Site | B3 <Area 3>
+Line 3 Construction Site | B3 <Subway Depot>
+Shallow Passage | Cave Fairy Department Store
+Shallow Passage | Cave Fairy Sanctuary
+Shallow Passage | Forbidden Entrance
+Shallow Passage | Forgotten Dungeon Tunnel
+Shallow Passage | Forgotten Entrance I
+Shallow Passage | Forgotten Entrance II
+Shallow Passage | Forgotten Entrance III
+Shallow Passage | Forgotten Hollow
+Shallow Passage | Primeval Forest I
+Shallow Passage | Primeval Forest II
+Shallow Passage | Primeval Forest III
+Shallow Passage | The End of Fleeting Light
+Shallow Passage | The Faded Canopy
+Victoria Road | 3-Way Road-Split
+Victoria Road | A Hill West of Henesys
+Victoria Road | Backalley Semi-Basement
+Victoria Road | Before Takeoff <To Orbis>
+Victoria Road | Bowman Instructional School
+Victoria Road | Camp 1
+Victoria Road | Camp 2
+Victoria Road | Camp 3
+Victoria Road | Construction Site North of Kerning City
+Victoria Road | Dungeon, Southern Forest I
+Victoria Road | Dungeon, Southern Forest II
+Victoria Road | Dungeon, Southern Forest III
+Victoria Road | Dungeon, Southern Forest IV
+Victoria Road | East Domain of Perion
+Victoria Road | East Rocky Mountain I
+Victoria Road | East Rocky Mountain II
+Victoria Road | East Rocky Mountain III
+Victoria Road | East Rocky Mountain IV
+Victoria Road | East Rocky Mountain V
+Victoria Road | East Rocky Mountain VI
+Victoria Road | East Rocky Mountain VII
+Victoria Road | Ellinia
+Victoria Road | Ellinia Department Store
+Victoria Road | Ellinia Station
+Victoria Road | Ellinia Weapon Store
+Victoria Road | Excavation Site <Camp>
+Victoria Road | Excavation Site I
+Victoria Road | Excavation Site II
+Victoria Road | Excavation Site III
+Victoria Road | Forest West of Henesys
+Victoria Road | Golem's Temple I
+Victoria Road | Golem's Temple II
+Victoria Road | Golem's Temple III
+Victoria Road | Golem's Temple IV
+Victoria Road | Henesys
+Victoria Road | Henesys Department Store
+Victoria Road | Henesys Hair Salon
+Victoria Road | Henesys Hunting Ground I
+Victoria Road | Henesys Hunting Ground II
+Victoria Road | Henesys Hunting Ground III
+Victoria Road | Henesys Market
+Victoria Road | Henesys Park
+Victoria Road | Henesys Plastic Surgery
+Victoria Road | Henesys Skin-Care
+Victoria Road | Henesys Town Hall
+Victoria Road | Henesys Townstreet
+Victoria Road | Henesys Weapon Store
+Victoria Road | Kerning City
+Victoria Road | Kerning City Civic Center
+Victoria Road | Kerning City Construction Site
+Victoria Road | Kerning City Hair Salon
+Victoria Road | Kerning City Middle Forest I
+Victoria Road | Kerning City Middle Forest II
+Victoria Road | Kerning City Middle Forest III
+Victoria Road | Kerning City Pharmacy
+Victoria Road | Kerning City Repair Shop
+Victoria Road | Kerning City Self-Defence Item Store
+Victoria Road | L Forest I
+Victoria Road | L Forest II
+Victoria Road | L Forest III
+Victoria Road | Lith Harbor
+Victoria Road | Lith Harbor Armor Shop
+Victoria Road | Lith Harbor Department Store
+Victoria Road | Lith Harbor Weapon Shop
+Victoria Road | Magic Library
+Victoria Road | Monkey Forest II
+Victoria Road | Niora Hospital
+Victoria Road | Parched Land
+Victoria Road | Perion
+Victoria Road | Perion Department Store
+Victoria Road | Perion Street Corner
+Victoria Road | Perion Weapon Store
+Victoria Road | Pet-Walking Road
+Victoria Road | Remains <Cliff>
+Victoria Road | Remains <Tomb> I
+Victoria Road | Remains <Tomb> II
+Victoria Road | Remains <Tomb> III
+Victoria Road | Remains <Tomb> IV
+Victoria Road | Right Around Lith Harbor
+Victoria Road | Rocky Road I
+Victoria Road | Rocky Road II
+Victoria Road | Rocky Road III
+Victoria Road | Subway Ticketing Booth
+Victoria Road | Sunset Sky
+Victoria Road | The Entrance of Golem's Temple
+Victoria Road | The Field South of Ellinia
+Victoria Road | The Field Up North of Ellinia
+Victoria Road | The Forest East of Henesys
+Victoria Road | The Forest North of Ellinia
+Victoria Road | The Forest of Wisdom
+Victoria Road | The Forest South of Ellinia
+Victoria Road | The Hill East of Henesys
+Victoria Road | The Rain-Forest East of Henesys
+Victoria Road | The Tree That Grew I
+Victoria Road | The Tree That Grew II
+Victoria Road | The Tree That Grew III
+Victoria Road | The Tree Tunnel At the Forest Up North
+Victoria Road | Thicket Around the Beach I
+Victoria Road | Thicket Around the Beach II
+Victoria Road | Thicket Around the Beach III
+Victoria Road | Thieves' Hideout
+Victoria Road | Tree Dungeon, Forest Up North I
+Victoria Road | Tree Dungeon, Forest Up North II
+Victoria Road | Tree Dungeon, Forest Up North III
+Victoria Road | Tree Dungeon, Forest Up North IV
+Victoria Road | Tree Dungeon, Forest Up North V
+Victoria Road | Tree Dungeon, Forest Up North VI
+Victoria Road | Tree Dungeon, Forest Up North VII
+Victoria Road | Tree Dungeon, Forest Up North VIII
+Victoria Road | Tree Dungeon, Forest Up North IX
+Victoria Road | Tree Dungeon, Monkey Forest I
+Victoria Road | Warriors' Sanctuary
+Victoria Road | West Domain of Perion
+Victoria Road | West Rocky Mountain I
+Victoria Road | West Rocky Mountain II
+Victoria Road | West Rocky Mountain III
+Victoria Road | West Rocky Mountain IV
+Victoria Road | West Street Corner of Perion
+Victoria Road | Yellow Mushroom House
+Warning Street | Dangerous Croko I
+Warning Street | Dangerous Croko II
+Warning Street | Deep Valley I
+Warning Street | Deep Valley II
+Warning Street | Deep Valley III
+Warning Street | Henesys Dungeon Entrance
+Warning Street | Perion Dungeon Entrance
+Warning Street | The Burnt Land I
+Warning Street | The Burnt Land II
+Warning Street | The Burnt Land III
+Warning Street | The Burnt Land IV
+Warning Street | The Burnt Land V
+Warning Street | The Road to the Dungeon
+Warning Street | The Swamp of Despair I
+Warning Street | The Swamp of Despair II
+Warning Street | The Swamp of Despair III
+During the Ride | Cabin <To Ellinia>
+During the Ride | Cabin <To Orbis>
+During the Ride | To Ellinia
+During the Ride | To Orbis
+El Nath | Chief's Residence
+El Nath | Cold Field I
+El Nath | Cold Field II
+El Nath | Dangerous Cliff
+El Nath | Dead Mine I
+El Nath | Dead Mine II
+El Nath | Dead Mine III
+El Nath | Dead Mine IV
+El Nath | El Nath
+El Nath | El Nath Department Store
+El Nath | El Nath Market
+El Nath | El Nath Weapon Store
+El Nath | Forest of Dead Trees I
+El Nath | Forest of Dead Trees II
+El Nath | Forest of Dead Trees III
+El Nath | Forest of Dead Trees IV
+El Nath | Ice Valley I
+El Nath | Ice Valley II
+El Nath | Icy Cold Field
+El Nath | Sharp Cliff I
+El Nath | Sharp Cliff II
+El Nath | Snowy Hill
+El Nath | The Cave of Trial I
+El Nath | The Cave of Trial II
+El Nath | The Cave of Trial III
+El Nath | The Door to Zakum
+El Nath | The Passage
+El Nath | Watch Out for Icy Path I
+El Nath | Watch Out for Icy Path II
+El Nath | Wolf Territory I
+El Nath | Wolf Territory II
+El Nath | Wolf Territory III
+El Nath | Wolf Territory IV
+El Nath | Wolf Territory V
+Hidden Street | Cave Within the Cave
+Hidden Street | Holy Ground at the Snowfield
+Hidden Street | The Crown-Flyer
+Orbis | Before Takeoff <To Ellinia>
+Orbis | Cloud Park I
+Orbis | Cloud Park II
+Orbis | Cloud Park III
+Orbis | Cloud Park IV
+Orbis | Cloud Park V
+Orbis | Cloud Park VI
+Orbis | Disposed Flower Garden
+Orbis | Entrance to Orbis Tower
+Orbis | Garden of Darkness I
+Orbis | Garden of Darkness II
+Orbis | Garden of Green I
+Orbis | Garden of Green II
+Orbis | Garden of Red I
+Orbis | Garden of Red II
+Orbis | Garden of Yellow I
+Orbis | Garden of Yellow II
+Orbis | Guild Head Quarters<Hall of Fame>
+Orbis | Old Man's House
+Orbis | Orbis
+Orbis | Orbis Department Store
+Orbis | Orbis Park
+Orbis | Orbis Ticketing Booth
+Orbis | Orbis Tower <1st Floor>
+Orbis | Orbis Tower <2nd Floor>
+Orbis | Orbis Tower <3rd Floor>
+Orbis | Orbis Tower <4th Floor>
+Orbis | Orbis Tower <5th Floor>
+Orbis | Orbis Tower <6th Floor>
+Orbis | Orbis Tower <7th Floor>
+Orbis | Orbis Tower <8th Floor>
+Orbis | Orbis Tower <9th Floor>
+Orbis | Orbis Tower <10th Floor>
+Orbis | Orbis Tower <11th Floor>
+Orbis | Orbis Tower <12th Floor>
+Orbis | Orbis Tower <13th Floor>
+Orbis | Orbis Tower <14th Floor>
+Orbis | Orbis Tower <15th Floor>
+Orbis | Orbis Tower <Hidden Room>
+Orbis | Orbis Weapon Store
+Orbis | Stairway to the Sky I
+Orbis | Stairway to the Sky II
+Orbis | Station Tunnel <To Ellinia>
+Orbis | Station<To Ellinia>
+Orbis | Strolling Path
+Orbis | Strolling Path II
+Orbis | The Road to Garden of 3 Colors
+Orbis | Top of the Hill
+Orbis Park | Orbis Hair Salon
+Orbis Park | Orbis Plastic Surgery
+Orbis Park | Orbis Skin-Care
+Hidden Street | 1st Accompaniment <1st Stage>
+Hidden Street | 1st Accompaniment <2nd Stage>
+Hidden Street | 1st Accompaniment <3rd Stage>
+Hidden Street | 1st Accompaniment <4th stage>
+Hidden Street | 1st Accompaniment <Bonus>
+Hidden Street | 1st Accompaniment <Exit>
+Hidden Street | 1st Accompaniment <Last Stage>
+Hidden Street | Ant Tunnel For Bowman
+Hidden Street | Back to Town
+Hidden Street | Free Market <1>
+Hidden Street | Free Market <2>
+Hidden Street | Free Market <3>
+Hidden Street | Free Market <4>
+Hidden Street | Free Market <5>
+Hidden Street | Free Market <6>
+Hidden Street | Free Market <7>
+Hidden Street | Free Market <8>
+Hidden Street | Free Market <9>
+Hidden Street | Free Market <10>
+Hidden Street | Free Market <11>
+Hidden Street | Free Market <12>
+Hidden Street | Free Market <13>
+Hidden Street | Free Market <14>
+Hidden Street | Free Market <15>
+Hidden Street | Free Market <16>
+Hidden Street | Free Market <17>
+Hidden Street | Free Market <18>
+Hidden Street | Free Market <19>
+Hidden Street | Free Market <20>
+Hidden Street | Free Market Entrance
+Hidden Street | Magician's Tree Dungeon
+Hidden Street | Pig Town
+Hidden Street | Primrose Hill
+Hidden Street | Shortcut
+Hidden Street | Thief's Construction Site
+Hidden Street | Warrior's Rocky Mountain
+Truth Booth | Truth Booth
+Hidden Street | Coconut Harvest
+Hidden Street | G* Coconut Season
+Hidden Street | Leaving the Event
+Hidden Street | Maple Hill
+Hidden Street | Physical Fitness Test <Easy Level 1>
+Hidden Street | Physical Fitness Test <Easy Level 2>
+Hidden Street | Physical Fitness Test <Easy Level 3>
+Hidden Street | Physical Fitness Test <Easy Waiting Room>
+Hidden Street | Physical Fitness Test <Level 1>
+Hidden Street | Physical Fitness Test <Level 2>
+Hidden Street | Physical Fitness Test <Level 3>
+Hidden Street | Physical Fitness Test <Level 4>
+Hidden Street | Physical Fitness Test <Normal Level 1>
+Hidden Street | Physical Fitness Test <Normal Level 2>
+Hidden Street | Physical Fitness Test <Normal Level 3>
+Hidden Street | Physical Fitness Test <Normal Waiting Room>
+Hidden Street | Physical Fitness Test <Waiting Room>
+Hidden Street | Receiving the Reward For the Event
+Hidden Street | Up and Up <Level 1>
+Hidden Street | Up and Up <Level 2>
+Hidden Street | Up and Up <Level 3>
