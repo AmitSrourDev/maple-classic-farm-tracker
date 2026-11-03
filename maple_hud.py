@@ -404,7 +404,19 @@ class Engine(threading.Thread):
                         self._set(status="paused" if self.paused else "tracking")
                     elif cmd == "reset":
                         glog.flush(t)
+                        anchor = session.last  # keep the parser's level/exp/pct anchor so OCR
                         session = Session(float(self.s.get("window_min", 5)))
+                        if anchor:
+                            # separators (brackets, commas, '.', '%') are often lost by OCR and
+                            # the digit-salvage path needs a known level; seed the fresh session
+                            # with the current reading so counters zero out but the anchor stays.
+                            _, lv, exp, pct = anchor
+                            session.t0 = t
+                            session.level0, session.exp0, session.pct0 = lv, exp, pct
+                            session.last = (t, lv, exp, pct)
+                            session.hist.append((t, 0))
+                            session.samples.append((t, 0))
+                        fails = 0
                         self._log("session reset")
                     elif cmd == "relocate":
                         exp_rect, hint, grid, map_rect = self._locate(grab, ocr)
