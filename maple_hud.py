@@ -927,11 +927,46 @@ def run_ui(settings, debug_dir, open_settings=False):
         # meowdb
         mf = tk.Frame(nb, bg=BG, padx=12, pady=10)
         nb.add(mf, text="meowdb")
-        tk.Label(mf, text="meowdb signs you in with Google, so paste your browser session cookie here (Chrome: F12 > Network >\nany meowdb.com request > Request Headers > the whole 'cookie:' value). Stored locally only, used for\nGET /api/me/export (your builds) - nothing else. Sessions expire; paste a fresh one when sync fails.",
+        tk.Label(mf, text="Sign in to meowdb (Google) once; the tracker uses the session cookie only for\nGET /api/me/export (your builds) - nothing else. Stored locally. Sessions expire;\nsign in again if sync fails.",
                  bg=BG, fg=FG, font=mono, justify="left", anchor="w").grid(row=0, column=0, columnspan=3, sticky="w")
         cookie_path = data("meowdb_cookie.txt")
         cv = tk.StringVar(value=cookie_path.read_text(encoding="utf-8").strip() if cookie_path.exists() else "")
-        tk.Entry(mf, textvariable=cv, width=70, font=mono, show="•").grid(row=1, column=0, columnspan=2, sticky="w", pady=8)
+        status_var = tk.StringVar(value="not checked")
+        tk.Label(mf, text="status:", bg=BG, fg=DIM, font=mono).grid(row=1, column=0, sticky="w", pady=(6, 2))
+        tk.Label(mf, textvariable=status_var, bg=BG, fg=FG, font=mono).grid(row=1, column=1, sticky="w", pady=(6, 2))
+
+        def set_status(s: str):
+            status_var.set(s)
+
+        def sign_in():
+            def work():
+                root.after(0, lambda: set_status("opening meowdb..."))
+                try:
+                    import meowdb
+                    detail = meowdb.login_via_webview()
+                    if cookie_path.exists():
+                        new_cookie = cookie_path.read_text(encoding="utf-8").strip()
+                        root.after(0, lambda: cv.set(new_cookie))
+                    root.after(0, lambda: set_status(detail))
+                    root.after(0, lambda: say("meowdb: " + detail))
+                except Exception as e:
+                    err = str(e)
+                    root.after(0, lambda: set_status(err))
+                    root.after(0, lambda: say("meowdb sign-in failed: " + err))
+            threading.Thread(target=work, daemon=True).start()
+
+        def test_cookie():
+            def work():
+                root.after(0, lambda: set_status("testing..."))
+                try:
+                    import meowdb
+                    ok, detail = meowdb.verify(cv.get().strip() or None)
+                    root.after(0, lambda: set_status(detail))
+                    root.after(0, lambda: say("meowdb: " + detail))
+                except Exception as e:
+                    err = str(e)
+                    root.after(0, lambda: set_status(err))
+            threading.Thread(target=work, daemon=True).start()
 
         def save_cookie():
             cookie_path.write_text(cv.get().strip(), encoding="utf-8")
@@ -948,9 +983,16 @@ def run_ui(settings, debug_dir, open_settings=False):
                     root.after(0, lambda: say(f"sync failed: {err}"))
             say("syncing...")
             threading.Thread(target=work, daemon=True).start()
-        tk.Button(mf, text="Save cookie", command=save_cookie, font=mono).grid(row=2, column=0, sticky="w", pady=4)
-        tk.Button(mf, text="Sync now (export -> build.json)", command=sync_now, font=mono).grid(row=2, column=1, sticky="w", pady=4)
-        tk.Label(mf, text=f"build.json: {data('build.json')}", bg=BG, fg=DIM, font=mono).grid(row=3, column=0, columnspan=3, sticky="w")
+
+        tk.Button(mf, text="Sign in to meowdb (Google)", command=sign_in, font=mono).grid(row=2, column=0, sticky="w", pady=6)
+        tk.Button(mf, text="Test cookie", command=test_cookie, font=mono).grid(row=2, column=1, sticky="w", pady=6)
+        tk.Button(mf, text="Sync now (export -> build.json)", command=sync_now, font=mono).grid(row=2, column=2, sticky="w", pady=6, padx=(8, 0))
+
+        tk.Label(mf, text="Fallback: paste the full Cookie header from DevTools (meowdb.com request).",
+                 bg=BG, fg=DIM, font=mono, justify="left").grid(row=3, column=0, columnspan=3, sticky="w", pady=(10, 2))
+        tk.Entry(mf, textvariable=cv, width=70, font=mono, show="•").grid(row=4, column=0, columnspan=2, sticky="w", pady=4)
+        tk.Button(mf, text="Save pasted cookie", command=save_cookie, font=mono).grid(row=4, column=2, sticky="w", pady=4, padx=(8, 0))
+        tk.Label(mf, text=f"build.json: {data('build.json')}", bg=BG, fg=DIM, font=mono).grid(row=5, column=0, columnspan=3, sticky="w", pady=(10, 0))
 
         # Updates
         uf = tk.Frame(nb, bg=BG, padx=12, pady=10)
@@ -1241,6 +1283,14 @@ def selftest() -> int:
 
 
 def main():
+    # Fast-path for the webview-login subprocess: the main app re-execs itself with this
+    # flag to open the meowdb Sign-in window in a child process (keeps pywebview off the
+    # Tk mainloop). Handle before argparse so unknown-arg errors don't kill the login flow.
+    if "--meowdb-login" in sys.argv:
+        i = sys.argv.index("--meowdb-login")
+        out = sys.argv[i + 1] if i + 1 < len(sys.argv) else ""
+        import webview_login
+        sys.exit(webview_login.run(out))
     ap = argparse.ArgumentParser(description=f"{APP_TITLE}: EXP/min, farm rate, potions + cost, mesos, per-map grind log")
     ap.add_argument("--console", action="store_true", help="run in the terminal instead of the overlay")
     ap.add_argument("--version", action="version", version=f"{APP_TITLE} {__version__}")

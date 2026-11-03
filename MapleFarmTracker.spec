@@ -5,9 +5,13 @@ from PyInstaller.utils.hooks import collect_all
 datas = [("maple_maps.txt", "."), ("build.default.json", "."), ("installer/icon.png", ".")]
 binaries = []
 hiddenimports = ["maple_exp", "maple_slots", "maple_build", "meowdb", "updater", "app_paths", "version",
+                 "webview_login",
                  "tkinter", "tkinter.ttk", "tkinter.font", "mss", "mss.windows", "PIL.ImageTk"]
-for pkg in ("rapidocr_onnxruntime", "onnxruntime"):
-    d, b, h = collect_all(pkg)
+for pkg in ("rapidocr_onnxruntime", "onnxruntime", "webview", "clr_loader"):
+    try:
+        d, b, h = collect_all(pkg)
+    except Exception:
+        continue
     datas += d
     binaries += b
     hiddenimports += h

@@ -1,5 +1,7 @@
 # MapleStory Classic Farm Tracker
 
+![screenshot](docs/screenshot.png)
+
 An overlay for **MapleStory Classic World** that reads your screen and tells you, while you grind:
 
 - **EXP/min** and a **farm rate** that ignores standing around and the fresh-spawn burst, ETA to the next level
@@ -32,7 +34,7 @@ The app checks the [releases](../../releases) on start and every 6 hours and ins
 
 - **General**: read intervals, rolling windows, red threshold for pots, monitor, overlay font/opacity/width, *Start with Windows*.
 - **Pots**: tick the quickslot keys that hold potions, name them, set the unit price you pay (NPC price). Default: Del = Meat 80, End = Lemon 150.
-- **meowdb**: paste your meowdb session cookie once and *Sync now* pulls your account export (your character builds) into `build.json` for the kill model. meowdb logs in with Google, so there is no password login; the cookie stays on your disk and is only sent to `meowdb.com/msclassic/api/me/export`.
+- **meowdb**: click *Sign in to meowdb* once - an embedded Chromium window (WebView2) opens meowdb.com, you finish the Google OAuth flow inside it, and the session cookie is captured and verified automatically. *Test cookie* probes `/api/me/export` and tells you if you're signed in. *Sync now* pulls your account export into `build.json` for the kill model. A paste-the-cookie-from-DevTools fallback is still there. meowdb has no password login; the cookie stays on your disk and is only sent to `meowdb.com/msclassic/api/me/export`.
 - **Updates**: auto-install toggle, repo, *Check now*, *Install update*.
 - **Set region** (menu): drag a box around the EXP bar, the quickslot grid or the mesos number if auto-detection misses on your layout. *Clear all* returns to auto.
 
@@ -46,7 +48,7 @@ Data lives in `%APPDATA%\MapleFarmTracker` (settings, `grind_log.csv`, per-sessi
 - **Mesos**: `<number> MESOS` on the inventory window, found when the window is open, then re-read each cycle.
 - **Map**: the minimap title, snapped to meowdb's list of all 453 Classic World maps (`maple_maps.txt`).
 - **Grind log**: a segment starts when EXP rises, ends on a map change or after 2 min without gain, and is logged if it lasted at least 1 min at 50+ EXP/min.
-- **Kill model** (`maple_build.py`, thief/assassin only so far): meowdb's damage, defense, level-gap and accuracy formulas, Lucky Seven's per-level MP/damage table, and a mob table (Stirge, Jr. Necki, Horny/Zombie Mushroom, Evil Eye, Ligator, Curse Eye, Jr. Wraith, Lupin, Cold Eye, Zombie Lupin, Wraith). `python maple_build.py --map "Transfer Area"` prints the full table. Other jobs: the tracker works for everyone; only this model line is thief-specific.
+- **Kill model** (thief/assassin only so far): the overlay prints the model line for the current map's mob automatically; it uses meowdb's damage, defense, level-gap and accuracy formulas, Lucky Seven's per-level MP/damage table, and a mob table (Stirge, Jr. Necki, Horny/Zombie Mushroom, Evil Eye, Ligator, Curse Eye, Jr. Wraith, Lupin, Cold Eye, Zombie Lupin, Wraith). `maple_build.py` is also runnable as a CLI inspector (`python maple_build.py --map "Transfer Area"` prints the full table). Other jobs: the tracker works for everyone; only this model line is thief-specific.
 
 ## Different setups
 

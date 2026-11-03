@@ -3,3 +3,4 @@ onnxruntime>=1.16
 numpy
 pillow
 mss
+pywebview>=5.0,<6; sys_platform == "win32"
