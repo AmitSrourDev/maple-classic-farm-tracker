@@ -36,7 +36,7 @@ jobs:
 
       - name: Lint + unit tests
         run: |
-          python -m pyflakes maple_hud.py maple_exp.py maple_slots.py maple_build.py meowdb.py updater.py app_paths.py webview_login.py
+          python -m pyflakes maple_hud.py maple_exp.py maple_slots.py maple_build.py maple_classify.py meowdb.py updater.py app_paths.py webview_login.py
           python tests/test_session.py
 
       - name: Build with PyInstaller

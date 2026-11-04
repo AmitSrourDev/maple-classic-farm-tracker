@@ -580,6 +580,13 @@ class Session:
         self.bad = 0
         self.hist = deque()       # (t, cumulative gained)
         self.samples = []         # (t, cumulative gained), every accepted sample
+        # Active-time accounting: when the engine detects the player is in a
+        # town, it freezes the session. frozen_s accumulates past freeze/thaw
+        # intervals; frozen_since is the start of the current freeze (if any).
+        # active_elapsed excludes both. AVG uses active_elapsed so town/idle
+        # time never drags the rate down.
+        self.frozen_s = 0.0
+        self.frozen_since = None  # None = not frozen; float = freeze start t
 
     def farm_rate(self, min_rate=50.0, last_n=15):
         return farm_rate(self.samples, min_rate, last_n)
@@ -648,9 +655,30 @@ class Session:
     def elapsed(self) -> float:
         return 0.0 if self.last is None else self.last[0] - self.t0
 
-    def avg_rate(self) -> float:
-        e = self.elapsed
+    def active_elapsed(self, now: float | None = None) -> float:
+        """Session seconds with town/idle freezes removed. When `now` is passed
+        and we're currently frozen, the open freeze window is subtracted too so
+        AVG stays pinned at the pre-freeze rate even if no new EXP arrives."""
+        if self.last is None:
+            return 0.0
+        t = now if now is not None else self.last[0]
+        pending = (t - self.frozen_since) if self.frozen_since is not None else 0.0
+        return max(0.0, (t - self.t0) - self.frozen_s - pending)
+
+    def avg_rate(self, now: float | None = None) -> float:
+        e = self.active_elapsed(now)
         return self.gained / e * 60.0 if e > 0 else 0.0
+
+    def freeze(self, at: float) -> None:
+        """Mark the session frozen from `at` onward (idempotent)."""
+        if self.frozen_since is None:
+            self.frozen_since = at
+
+    def unfreeze(self, now: float) -> None:
+        """Close the open freeze window and add its length to frozen_s."""
+        if self.frozen_since is not None:
+            self.frozen_s += max(0.0, now - self.frozen_since)
+            self.frozen_since = None
 
     def rolling_rate(self) -> float:
         if len(self.hist) < 2:
@@ -673,6 +701,8 @@ class Session:
             "exp_gained": self.gained,
             "exp_lost": self.lost,
             "levelups": self.levelups,
+            "active_minutes": round(self.active_elapsed() / 60.0, 2),
+            "frozen_minutes": round(self.frozen_s / 60.0, 2),
             "avg_exp_per_min": round(self.avg_rate(), 1),
             "avg_exp_per_hour": round(self.avg_rate() * 60, 0),
             "farm_exp_per_min": round(self.farm_rate()[0], 1) if self.farm_rate()[0] is not None else None,
@@ -703,11 +733,19 @@ def render(s: Session, rect, last_text: str, csv_path: Path) -> str:
         rem = need - exp
         eta_roll = rem / roll if roll > 0 else float("inf")
         eta_avg = rem / avg if avg > 0 else float("inf")
+        active = s.active_elapsed()
+        frozen = s.frozen_s + ((time.time() - s.frozen_since) if s.frozen_since is not None else 0.0)
         lines.append(f"Lv {lv}   EXP {exp:,} / {need:,} [{pct:.2f}%]   {datetime.now():%H:%M:%S}")
-        lines.append(f"Session {fmt_min(s.elapsed / 60)}   gained {s.gained:,} EXP"
-                     + (f"   lost {s.lost:,}" if s.lost else "")
-                     + (f"   level-ups {s.levelups}" if s.levelups else ""))
-        lines.append(f"AVG {avg:,.0f} EXP/min  ({avg * 60:,.0f}/h)    last {int(s.window // 60)} min: {roll:,.0f} EXP/min")
+        timing = f"Session {fmt_min(active / 60)} active"
+        if frozen > 30:
+            timing += f"   {fmt_min(frozen / 60)} paused"
+        timing += f"   +{s.gained:,} EXP"
+        if s.lost:
+            timing += f"   lost {s.lost:,}"
+        if s.levelups:
+            timing += f"   level-ups {s.levelups}"
+        lines.append(timing)
+        lines.append(f"AVG {avg:,.0f} EXP/min  ({avg * 60:,.0f} EXP/h)    last {int(s.window // 60)}m: {roll:,.0f} EXP/min")
         lines.append(f"To Lv {lv + 1}: {rem:,} EXP   ETA {fmt_min(eta_roll)} at rolling rate, {fmt_min(eta_avg)} at avg")
     else:
         lines.append("Waiting for a clean read of the EXP bar...")

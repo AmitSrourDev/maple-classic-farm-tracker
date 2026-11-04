@@ -32,6 +32,7 @@ from pathlib import Path
 
 import numpy as np
 
+import maple_classify
 from app_paths import APP_TITLE, DATA_DIR, FROZEN, data
 from maple_exp import (EXP_TABLE, Grabber, LiveBlock, Ocr, Session, _make_dpi_aware, fmt_min,
                        locate_exp_region, read_exp_from_line)
@@ -514,6 +515,17 @@ class Engine(threading.Thread):
                 elif maps.current and glog.map is None:
                     glog.set_map(maps.current, t)
 
+            # ---- auto-freeze session time when in town ----
+            # Map kind is re-checked every tick (cheap string check). When the
+            # current map is a town, freeze active time from the last EXP read,
+            # so the pause starts at "when the EXP stopped happening" rather
+            # than at the moment we noticed we're in town. Grind/PQ unfreezes.
+            kind = maple_classify.classify(maps.current) if maps.current else "unknown"
+            if kind == "town" and session.last:
+                session.freeze(session.last[0])
+            elif kind in ("grind", "pq") and session.frozen_since is not None:
+                session.unfreeze(t)
+
             # ---- state for the UI ----
             pots = {}
             cost_per_h = 0.0
@@ -547,18 +559,24 @@ class Engine(threading.Thread):
             if glog.seg is not None:
                 ex = seg_extras(glog.seg)
                 seg_cost, seg_mesos_delta = ex["pots_cost"], ex["mesos"]
+            frozen_now = session.frozen_s + ((t - session.frozen_since) if session.frozen_since is not None else 0.0)
             self._set(
                 status="tracking",
                 t=t, level=session.last[1] if session.last else None,
                 exp=session.last[2] if session.last else None,
                 pct=session.last[3] if session.last else None,
                 need=EXP_TABLE[session.last[1]] if session.last else None,
-                elapsed=session.elapsed, gained=session.gained, lost=session.lost, levelups=session.levelups,
-                avg=session.avg_rate(), rolling=session.rolling_rate(), farm=farm, farm_min=farm_min,
+                elapsed=session.elapsed, active_elapsed=session.active_elapsed(t),
+                frozen_s=frozen_now, frozen_now=session.frozen_since is not None,
+                gained=session.gained, lost=session.lost, levelups=session.levelups,
+                avg=session.avg_rate(t), rolling=session.rolling_rate(), farm=farm, farm_min=farm_min,
                 ok=session.ok, bad=session.bad,
                 ocr=last_text, pots=pots, pots_cost_per_h=cost_per_h,
                 mesos=mesos.value, mesos_per_h=mesos_per_h, mesos_locked=bool(meso_rect),
-                map=maps.current, seg=glog.current(t), seg_cost=seg_cost, seg_mesos=seg_mesos_delta, model=model,
+                map=maps.current, map_kind=kind,
+                pq=maple_classify.pq_kind(maps.current) if maps.current else None,
+                pq_info=maple_classify.pq_info(maps.current) if maps.current else None,
+                seg=glog.current(t), seg_cost=seg_cost, seg_mesos=seg_mesos_delta, model=model,
                 grind_recent=glog.recent(40), grind_per_map=glog.per_map(),
             )
             n += 1
@@ -590,19 +608,32 @@ def build_lines(st, settings):
     avg, roll = st["avg"], st["rolling"]
     rem = need - exp
     eta_a = rem / avg if avg > 0 else float("inf")
-    L.append((f"Lv {lv}  {exp:,} / {need:,}  {pct:.2f} %   {datetime.now():%H:%M:%S}", "head"))
+    # Header: level, raw EXP, %, clock.
+    L.append((f"Lv {lv}   {exp:,} / {need:,}  ({pct:.2f}%)   {datetime.now():%H:%M:%S}", "head"))
+    # Session time: active vs frozen (town/idle). "AVG uses active time only" so
+    # a long AFK in town doesn't drag the rate down.
+    active = float(st.get("active_elapsed") or 0.0)
+    frozen = float(st.get("frozen_s") or 0.0)
+    gained = st.get("gained") or 0
+    timing = f"Session  {fmt_min(active / 60)} active"
+    if frozen >= 30:
+        timing += f"  ·  {fmt_min(frozen / 60)} paused"
+    timing += f"  ·  +{gained:,} EXP"
+    if st.get("lost"):
+        timing += f"  ·  lost {st['lost']:,}"
+    if st.get("levelups"):
+        timing += f"  ·  {st['levelups']} level-up{'s' if st['levelups'] > 1 else ''}"
+    L.append((timing, "normal"))
+    # Rate block: explicit EXP/min + EXP/h units, farm rate separate from AVG.
     farm, fmin = st.get("farm"), st.get("farm_min") or 0
+    L.append((f"AVG   {avg:,.0f} EXP/min   ({k(avg * 60)} EXP/h)", "normal"))
     if farm is not None:
-        L.append((f"FARM {farm:,.0f}/min  {k(farm * 60)}/h  (last {fmin} active min, trimmed)    "
-                  f"session AVG {avg:,.0f}/min  {fmt_min(st['elapsed'] / 60)}  +{st['gained']:,}"
-                  + (f"  lost {st['lost']:,}" if st.get("lost") else ""), "normal"))
+        L.append((f"FARM  {farm:,.0f} EXP/min   ({k(farm * 60)} EXP/h)   (last {fmin} active min, trimmed)", "normal"))
     else:
-        L.append((f"AVG {avg:,.0f}/min  {k(avg * 60)}/h    last {int(settings.get('window_min', 5))}m {roll:,.0f}/min    "
-                  f"{fmt_min(st['elapsed'] / 60)}  +{st['gained']:,}  (farm rate after 2 active minutes)", "normal"))
+        L.append((f"last {int(settings.get('window_min', 5))}m   {roll:,.0f} EXP/min   ({k(roll * 60)} EXP/h)   (farm rate after 2 active minutes)", "dim"))
     base = farm if farm else (roll if roll > 0 else avg)
     eta_f = rem / base if base > 0 else float("inf")
-    L.append((f"To Lv {lv + 1}: {rem:,}  ETA {fmt_min(eta_f)} at farm rate / {fmt_min(eta_a)} at session avg"
-              + (f"   level-ups {st['levelups']}" if st.get("levelups") else ""), "normal"))
+    L.append((f"To Lv {lv + 1}: {rem:,} EXP   ETA {fmt_min(eta_f)} at farm rate  /  {fmt_min(eta_a)} at session AVG", "normal"))
     # pots
     pots = st.get("pots") or {}
     tracked = {k2: p for k2, p in pots.items() if k2 in settings["slots"]}
@@ -648,19 +679,32 @@ def build_lines(st, settings):
                   if cost_h else "Mesos: open the inventory (I) once to track", "dim"))
     if others:
         L.append(("Other slots: " + " · ".join(f"{p['name']} {p['count']}" for p in others.values()), "dim"))
-    # map / segment
+    # map / segment / PQ. `map_kind` drives both the label (grinding / in town /
+    # in PQ) and the session freeze; "in town" means AVG isn't counting this time.
     seg = st.get("seg")
     mp = st.get("map") or "map: ? (minimap closed?)"
-    if seg:
+    kind = st.get("map_kind") or "unknown"
+    pq = st.get("pq")
+    pq_info = st.get("pq_info") or {}
+    if kind == "town":
+        L.append((f"In town: {mp}  ·  session paused (AVG not counting this time)", "warn"))
+    elif kind == "pq":
+        head = f"In PQ: {pq or mp}"
+        if pq_info.get("expected_min"):
+            head += f"  ·  ~{pq_info['expected_min']}m expected"
+        if seg:
+            head += f"  ·  {seg[1]:.0f} min in, {seg[3]:,.0f} EXP/min ({k(seg[3] * 60)} EXP/h)"
+        L.append((head, "ok"))
+    elif seg:
         cost, md = st.get("seg_cost"), st.get("seg_mesos")
-        txt = f"Farming {mp}  ·  {seg[1]:.0f} min, {seg[3]:,.0f} EXP/min ({k(seg[3] * 60)}/h)"
+        txt = f"Grinding {mp}  ·  {seg[1]:.0f} min, {seg[3]:,.0f} EXP/min ({k(seg[3] * 60)} EXP/h)"
         if cost:
-            txt += f", pots {cost / max(seg[1], 0.1):,.0f}/min"
+            txt += f", pots {cost / max(seg[1], 0.1):,.0f} mesos/min"
         if md is not None:
             txt += f", mesos {'+' if md >= 0 else '-'}{abs(md):,}"
         L.append((txt, "ok"))
     else:
-        L.append((f"Farming {mp}  ·  idle (no EXP for a while)", "dim"))
+        L.append((f"Grinding {mp}  ·  idle (no EXP for a while)", "dim"))
     if st.get("model"):
         L.append(("Model (solo, from build.json): " + st["model"], "dim"))
     upd = st.get("update")

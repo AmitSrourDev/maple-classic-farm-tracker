@@ -18,7 +18,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt pyflakes
       - name: Lint
-        run: python -m pyflakes maple_hud.py maple_exp.py maple_slots.py maple_build.py meowdb.py updater.py app_paths.py webview_login.py
+        run: python -m pyflakes maple_hud.py maple_exp.py maple_slots.py maple_build.py maple_classify.py meowdb.py updater.py app_paths.py webview_login.py
       - name: Unit tests (parser, session, farm rate, map snapping)
         run: python tests/test_session.py
       - name: Synthetic OCR test (status bars at 6 fonts, level-up)
